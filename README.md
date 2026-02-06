@@ -2,4 +2,7 @@
 BachelorOppgave 
 
 Detet er bare en test av Graphql implentmenttion.
-What's up world !!!
+
+Start skript start to containere, Nginx og Graphql-dotnet. 
+
+
