@@ -1,0 +1,2 @@
+# bachelor-graphql-integration
+BachelorOppgave 
