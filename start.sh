@@ -25,8 +25,8 @@ podman run -d --restart=always --name graphql_dotnet \
 echo "Starter Nginx..."
 podman run -d --restart=always --name nginx \
   --network webnet \
-  -p 0.0.0.0:80:80 \
-  -v /home/kaiking/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
+  -p 0.0.0.0:8080:80 \
+  -v /home/kaiking/projects/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
   docker.io/library/nginx:alpine
 
 echo "Alt startet"
