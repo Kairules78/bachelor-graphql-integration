@@ -1,0 +1,13 @@
+q# Build output
+**/bin/
+**/obj/
+**/target/
+
+# Databases / runtime data
+**/data/
+*.db
+
+# Containers / system
+.local/
+.cache/
+
