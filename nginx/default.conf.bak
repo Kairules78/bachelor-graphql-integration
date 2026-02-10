@@ -7,12 +7,31 @@ server {
   listen 80;
   absolute_redirect off;
 
-  location = /graphql {
-    return 308 /graphql/;
+  # Landing page
+  location = / {
+    return 200 "OK. Use /graphql-dotnet/ or /graphql-java/\n";
+    add_header Content-Type text/plain;
   }
 
-  location / {
-    proxy_pass http://graphql:8081;
+  # Dotnet
+  location = /graphql-dotnet {
+    return 308 /graphql-dotnet/;
+  }
+
+  # Print endpoint (eksplisitt)
+    location = /print/countries {
+    proxy_pass http://graphql_dotnet:8081/print/countries;
+    proxy_http_version 1.1;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  } 
+
+
+  location /graphql-dotnet/ {
+    proxy_pass http://graphql_dotnet:8081/graphql/;
     proxy_http_version 1.1;
 
     proxy_set_header Host $host;
@@ -25,6 +44,16 @@ server {
 
     proxy_read_timeout 300;
     proxy_send_timeout 300;
+  }
+
+  # Java (ikke aktiv ennå)
+  location = /graphql-java {
+    return 308 /graphql-java/;
+  }
+
+  location /graphql-java/ {
+    return 200 "Java GraphQL er ikke startet ennå.\n";
+    add_header Content-Type text/plain;
   }
 }
 

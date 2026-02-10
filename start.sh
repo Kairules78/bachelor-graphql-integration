@@ -10,7 +10,7 @@ podman network inspect webnet >/dev/null 2>&1 || podman network create webnet
 echo "Starter C# GraphQL (Hot Chocolate)..."
 podman run -d --restart=always --name graphql_dotnet \
   --network webnet \
-  -v /home/kaiking/projects/myapp:/work \
+  -v /home/kaiking//bachelor-graphql-integration/myapp:/work \
   -w /work \
   mcr.microsoft.com/dotnet/sdk:8.0 \
   bash -lc 'dotnet run --no-launch-profile --urls "http://0.0.0.0:8081"'
@@ -26,7 +26,7 @@ echo "Starter Nginx..."
 podman run -d --restart=always --name nginx \
   --network webnet \
   -p 0.0.0.0:8080:80 \
-  -v /home/kaiking/projects/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
+  -v /home/kaiking//bachelor-graphql-integration/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro \
   docker.io/library/nginx:alpine
 
 echo "Alt startet"
